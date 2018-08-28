@@ -18,46 +18,93 @@
 
 
     <nav>
-        <div class="nav-wrapper">
-            <!-- <a href="#" class="logout">Logout</a> -->
+        <div class="nav-wrapper blue darken-3">
+            <a href="#" class="brand-logo right">
+            </a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li>
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/userProfile">Logout</a>
+                    <a href="/">Logout</a>
                 </li>
-
             </ul>
         </div>
     </nav>
 
-
-
-
-
-    <div class="row">
-        <div class="col s4">
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Login</h4>
             <div class="row">
-                <div class="mainGraph"></div>
+                <form class="col s12">
+                    <p id="error" style="color:red"></p>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="username" type="text" class="validate">
+                            <label for="last_name">username</label>
+                        </div>
+                    </div>
+                    <div class="row">
+
+
+                        <div class="input-field col s6">
+                            <input id="password" type="password" class="validate">
+                            <label for="last_name">password</label>
+                        </div>
+                    </div>
             </div>
+            <a class="waves-effect waves-light btn" id="submitBtn">Submit</a>
+            </form>
         </div>
     </div>
 
+
+
+
+
     <div class="row">
-        <div class="col s4">
+        <div class="col s6">
             <div class="row">
-                <div class="minGraph">
-                    <img src="Alphabet.png" alt="minGraph">
+                <p>add stocks</p>
+
+
+
+                <div class="col s12"></div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix"></i>
+                    <input type="text" id="autocomplete-input" class="autocomplete">
+                    <label for="autocomplete-input">Company</label>
                 </div>
+
+
             </div>
         </div>
-        <div class="col s4">
-            <div class="row">
-                <div class="maxGraph"></div>
+        <div class="col s6">
+            <div class="row" id="myStocks">
+                <a href="/symbol/AAPL" class="btn btn-flat transparent" id="AAPL">AAPL | Apple Inc.</a>
+                <a href="/symbol/AMZN" class="btn btn-flat transparent" id="AMZN">AMZN | Amazon.com, Inc.</a>
+                <a href="/symbol/GOOGL" class="btn btn-flat transparent" id="GOOGL">GOOGL | Alphabet Inc Class A</a>
+                <a href="/symbol/INTC" class="btn btn-flat transparent" id="INTC">INTC | Intel Corporation</a>
+                <a href="/symbol/ DVMT" class="btn btn-flat transparent" id="DVMT">DVMT | Dell Technologies Inc</a>
+                <a href="/symbol/QCOM" class="btn btn-flat transparent" id="QCOM">QCOM | QUALCOMM, Inc.</a>
             </div>
         </div>
     </div>
+
+    <div class="row center-align">
+        <div class="col s12" id="mainGraphUrl"></div>
+    </div>
+    <div class="row center-align">
+        <div id="minGraphUrl"></div>
+        <div id="maxGraphUrl"></div>
+    </div>
+    </div>
+
+
+
+
+
 
 
 
@@ -65,6 +112,19 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
     <script>
+        $(document).ready(function () {
+            $('.modal').modal()
+            $('.modal').modal('open')
+            $('#submitBtn').on('click', function () {
+                if ($('#password').val() === "123456") {
+                    $('.modal').modal('close')
+                } else if (($('#password').val() != "123456")) {
+                    $('#error').empty().append('username or password is incorrect')
+                }
+                // add random stocks
+            })
+        });
+
         $(document).ready(function () {
             $('input.autocomplete').autocomplete({
                 data: {
@@ -77,7 +137,13 @@
                 },
                 onAutocomplete: function (displayResults) {
                     let symbol = $(this).text().split(/^(.*?) \|/)[1]
-                    console.log(symbol)
+                    let tag = $('<a>', {
+                        'href': `/symbol/${symbol}`,
+                        'class': "btn btn-flat transparent",
+                        'id': symbol,
+                        'text': $(this).text()
+                    });
+                    $('#myStocks').append(tag)
                 },
                 minlength: 1,
                 limit: 50,
@@ -85,6 +151,19 @@
 
             });
         });
+
+        $('.btn-flat').on('click', function () {
+            getGraphs(this.id)
+        })
+
+
+        function getGraphs(symbol) {
+            $.post(`/symbol/${symbol}`, symbol, (data) => {
+                $('#mainGraphUrl').append(data.mainGraphUrl)
+                $('#minGraphUrl').append(data.minGraphUrl)
+                $('#minGraphUrl').append(data.maxGraphUrl)
+            })
+        }
     </script>
 </body>
 
