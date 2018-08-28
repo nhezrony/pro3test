@@ -10,7 +10,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 require('./routes/htmlRoutes')(app)
-// require('./routnpes')(app)
+require('./routes/APIRoures')(app)
+
 
 // var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/articles";
 
