@@ -1,5 +1,31 @@
-/* not linking to index.html for somereason */
+#logo-gif {
+    height: 60px;
+}
+
+/* #bgSheet {
+    background-image: url("images/BackgroundSheet.png");
+} */
+
+#bgVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index: -10;
+}
+
+#blackTape {
+    position: fixed;
+    top: 52vh;
+    left: 22vw;
+    z-index: -5;
+}
 
 .btn {
-    width:200px;
+    width:180px;
+}
+
+.company-icon {
+    width: 100px;
 }
