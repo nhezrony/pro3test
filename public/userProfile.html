@@ -82,12 +82,12 @@
         </div>
         <div class="col s6">
             <div class="row" id="myStocks">
-                <a href="/symbol/AAPL" class="btn btn-flat transparent" id="AAPL">AAPL | Apple Inc.</a>
+                <!-- <a href="/symbol/AAPL" class="btn btn-flat transparent" id="AAPL">AAPL | Apple Inc.</a>
                 <a href="/symbol/AMZN" class="btn btn-flat transparent" id="AMZN">AMZN | Amazon.com, Inc.</a>
                 <a href="/symbol/GOOGL" class="btn btn-flat transparent" id="GOOGL">GOOGL | Alphabet Inc Class A</a>
                 <a href="/symbol/INTC" class="btn btn-flat transparent" id="INTC">INTC | Intel Corporation</a>
                 <a href="/symbol/ DVMT" class="btn btn-flat transparent" id="DVMT">DVMT | Dell Technologies Inc</a>
-                <a href="/symbol/QCOM" class="btn btn-flat transparent" id="QCOM">QCOM | QUALCOMM, Inc.</a>
+                <a href="/symbol/QCOM" class="btn btn-flat transparent" id="QCOM">QCOM | QUALCOMM, Inc.</a> -->
             </div>
         </div>
     </div>
@@ -118,6 +118,7 @@
             $('#submitBtn').on('click', function () {
                 if ($('#password').val() === "123456") {
                     $('.modal').modal('close')
+
                 } else if (($('#password').val() != "123456")) {
                     $('#error').empty().append('username or password is incorrect')
                 }

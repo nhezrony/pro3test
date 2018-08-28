@@ -37,7 +37,7 @@
                     <a href="/profile">My Profile</a>
                 </li>
                 <li>
-                    <a href="/register">Register</a>
+                    <a href="/api/register" id="register">Register</a>
                 </li>
             </ul>
         </div>
@@ -162,6 +162,55 @@
         </div>
     </div>
 
+
+
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="First_name" type="text" class="validate">
+                            <label for="First_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="username" type="text" class="validate">
+                            <label for="username">Username</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">Re-enter Password</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">Email</label>
+                        </div>
+                    </div>
+                    <a class="waves-effect waves-light btn" id="submitBtn" href="/profile">Submit</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- <img src="images/HideTheMark.png" alt="hide" id="blackTape"> -->
 
     <!-- Compiled and minified JavaScript -->
@@ -200,6 +249,14 @@
                 $('#minGraphUrl').append(data.maxGraphUrl)
             })
         }
+
+        $('#register').on('click', function () {
+            $('.modal').modal()
+            $('.modal').modal('open')
+            $('#submitBtn').on('click', function () {
+                $('.modal').modal('close')
+            })
+        })
     </script>
 </body>
 

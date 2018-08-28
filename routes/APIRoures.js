@@ -17,4 +17,11 @@ module.exports = (app) => {
         console.log(graphUrls)
         res.json(graphUrls)
     })
+
+    app.get('/api/register', async (req, res) => {})
+    app.post('/api/register', async (req, res) => {
+        const graphUrls = await plot.links(req.params.id)
+        console.log(graphUrls)
+        res.json(graphUrls)
+    })
 }
