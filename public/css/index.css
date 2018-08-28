@@ -2,9 +2,9 @@
     height: 60px;
 }
 
-/* #bgSheet {
+#bgSheet {
     background-image: url("images/BackgroundSheet.png");
-} */
+}
 
 #bgVideo {
     position: fixed;
