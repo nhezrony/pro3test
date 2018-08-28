@@ -17,4 +17,8 @@ require('./routes/APIRoures')(app)
 
 // mongoose.connect(MONGODB_URI);
 
-app.listen(PORT, () => console.log(`Listening on Port ${PORT}`))
+// app.listen(PORT, () => console.log(`Listening on Port ${PORT}`))
+
+app.listen(PORT, function() {
+    console.log(`Listening on Port ${PORT}`)
+ });
